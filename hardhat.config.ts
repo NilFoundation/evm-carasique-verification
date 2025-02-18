@@ -14,6 +14,7 @@ import './tasks/counter'
 import './tasks/call_counter'
 import './tasks/delegatecall'
 import './tasks/indexed_log'
+import './tasks/overflow'
 
 
 const DEFAULT_PRIVATE_KEY = "0x" + "0".repeat(64); // 32 bytes of zeros placeholder to pass config validation
