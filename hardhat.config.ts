@@ -7,7 +7,14 @@ require("hardhat-deploy");
 require('hardhat-deploy-ethers');
 require('hardhat-contract-sizer');
 
+
+import './tasks/minimal_math'
 import './tasks/modular-test'
+import './tasks/counter'
+import './tasks/call_counter'
+import './tasks/delegatecall'
+import './tasks/indexed_log'
+
 
 const DEFAULT_PRIVATE_KEY = "0x" + "0".repeat(64); // 32 bytes of zeros placeholder to pass config validation
 
@@ -28,6 +35,9 @@ module.exports = {
                 enabled: true,
                 runs: 200,
             },
+            metadata:{
+                appendCBOR: false
+            }
         },
     },
     namedAccounts: {
@@ -35,7 +45,11 @@ module.exports = {
     },
     networks: {
         hardhat: {
-            blockGasLimit: 100_000_000,
+            gas: "auto",
+            mining: {
+                auto: false,
+                interval: 1000
+            }
         },
         sepolia: {
             url: `https://eth-sepolia.g.alchemy.com/v2/${SEPOLIA_ALCHEMY_KEY}`,
@@ -47,6 +61,11 @@ module.exports = {
         },
         localhost: {
             url: "http://127.0.0.1:8545",
+            gas: "auto",
+            mining: {
+                auto: false,
+                interval: 1000
+            }
         }
     },
     etherscan: {
